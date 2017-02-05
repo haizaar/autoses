@@ -17,6 +17,7 @@ from config import config
 
 logger = logging.getLogger(__name__)
 
+
 class AWS:
 
     class LeftoversError(Exception):
