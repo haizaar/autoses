@@ -26,7 +26,7 @@ def handle_received(message):
         logger.info("Got Amazon SET setup message %s", ses_message_id)
         return
 
-    subject = message["mail"]["commonHeaders"]["subject"]
+    subject = message["mail"]["commonHeaders"].get("subject", "<none>")
     message_id = message["mail"]["commonHeaders"]["messageId"]
     delivery_timestamp = message["mail"]["timestamp"]
     bucket = message["receipt"]["action"]["bucketName"]
