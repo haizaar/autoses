@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import logging
+from datetime import datetime
 
 import boto3
 import click
@@ -35,6 +36,8 @@ class Searcher:
 
     def log_response(self, resp):
         for e in resp["events"]:
+            logger.debug("Stream: %s, timestamp: %s",
+                         e["logStreamName"], datetime.fromtimestamp(e["timestamp"] / 1000.0))
             logger.info("Found event: %s", e["message"])
         for stream in resp["searchedLogStreams"]:
             if stream["searchedCompletely"]:
